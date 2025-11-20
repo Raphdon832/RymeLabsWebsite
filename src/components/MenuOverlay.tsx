@@ -9,10 +9,10 @@ interface MenuOverlayProps {
 }
 
 const navLinks = [
-  { name: "Products", href: "#" },
-  { name: "Solutions", href: "#" },
-  { name: "Company", href: "#" },
-  { name: "Contact", href: "#" },
+  { name: "Products", href: "/products" },
+  { name: "Solutions", href: "/solutions" },
+  { name: "Company", href: "/company" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
@@ -49,18 +49,18 @@ export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
           {/* Menu Items */}
           <nav className="flex flex-col items-center gap-8">
             {navLinks.map((link, index) => (
-              <motion.a
-                key={link.name}
-                href={link.href}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ delay: index * 0.1 + 0.1, duration: 0.5 }}
-                className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500 hover:to-white transition-all duration-300 tracking-tight cursor-pointer"
-                onClick={onClose}
-              >
-                {link.name}
-              </motion.a>
+              <Link key={link.name} href={link.href} legacyBehavior passHref>
+                <motion.a
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ delay: index * 0.1 + 0.1, duration: 0.5 }}
+                  className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500 hover:to-white transition-all duration-300 tracking-tight cursor-pointer"
+                  onClick={onClose}
+                >
+                  {link.name}
+                </motion.a>
+              </Link>
             ))}
           </nav>
 

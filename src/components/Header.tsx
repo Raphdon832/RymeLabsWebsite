@@ -1,0 +1,56 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import MagneticButton from "@/components/MagneticButton";
+import MenuOverlay from "@/components/MenuOverlay";
+
+export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [animationType, setAnimationType] = useState<'zoom' | 'type'>('zoom');
+
+  useEffect(() => {
+    setAnimationType(Math.random() > 0.5 ? 'zoom' : 'type');
+  }, []);
+
+  return (
+    <>
+      <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/50 backdrop-blur-md">
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="w-10 h-10 flex items-center justify-center">
+            <motion.div 
+              className="relative w-8 h-8"
+              initial={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: 1, scale: 1 }}
+            >
+              <Image 
+                src="/RymeLabsIcon.png" 
+                alt="RymeLabs" 
+                fill
+                className="object-contain"
+                priority
+              />
+            </motion.div>
+          </div>
+          <span className="text-xl font-bold tracking-tight text-white block">
+            RymeLabs
+          </span>
+        </Link>
+        
+        <MagneticButton 
+          onClick={() => setIsMenuOpen(true)}
+          className="group bg-white/5 border border-white/10 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-all hover:scale-105 active:scale-95 flex items-center gap-3 backdrop-blur-sm cursor-pointer"
+        >
+          <span className="tracking-wide">MENU</span>
+          <div className="flex flex-col gap-[5px] items-end">
+            <span className="w-6 h-[2px] bg-white rounded-full group-hover:w-4 transition-all duration-300"></span>
+            <span className="w-4 h-[2px] bg-white rounded-full group-hover:w-6 transition-all duration-300"></span>
+          </div>
+        </MagneticButton>
+      </header>
+    </>
+  );
+}

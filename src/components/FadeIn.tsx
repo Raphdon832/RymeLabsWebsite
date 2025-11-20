@@ -9,9 +9,17 @@ interface FadeInProps {
   delay?: number;
   direction?: "up" | "down" | "left" | "right" | "none";
   fullWidth?: boolean;
+  inView?: boolean;
 }
 
-export default function FadeIn({ children, className, delay = 0, direction = "up", fullWidth = false }: FadeInProps) {
+export default function FadeIn({
+  children,
+  className = "",
+  delay = 0,
+  direction = "up",
+  fullWidth = false,
+  inView = true,
+}: FadeInProps) {
   const directions = {
     up: { y: 100, x: 0, skewY: 3 },
     down: { y: -100, x: 0, skewY: -3 },
@@ -23,10 +31,16 @@ export default function FadeIn({ children, className, delay = 0, direction = "up
   return (
     <motion.div
       initial={{ opacity: 0, ...directions[direction] }}
-      whileInView={{ opacity: 1, x: 0, y: 0, skewX: 0, skewY: 0 }}
-      viewport={{ once: false, margin: "-10% 0px -10% 0px" }}
+      {...(inView
+        ? {
+            whileInView: { opacity: 1, x: 0, y: 0, skewX: 0, skewY: 0 },
+            viewport: { once: true, margin: "-10% 0px -10% 0px" },
+          }
+        : {
+            animate: { opacity: 1, x: 0, y: 0, skewX: 0, skewY: 0 },
+          })}
       transition={{ duration: 0.8, delay, ease: [0.25, 0.4, 0.25, 1] }}
-      className={`${className} ${fullWidth ? "w-full" : ""}`}
+      className={`${className} ${fullWidth ? "w-full" : ""}`.trim()}
     >
       {children}
     </motion.div>

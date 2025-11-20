@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import BinaryBackground from "@/components/BinaryBackground";
 import GlobeBackground from "@/components/GlobeBackground";
 import WavyBackground from "@/components/WavyBackground";
@@ -19,6 +20,7 @@ import Preloader from "@/components/Preloader";
 
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import { useLoading } from "@/context/LoadingContext";
 
 const HeaderText = ({ type }: { type: 'zoom' | 'type' }) => {
   if (type === 'zoom') {
@@ -52,16 +54,22 @@ const HeaderText = ({ type }: { type: 'zoom' | 'type' }) => {
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const { hasLoaded, setHasLoaded } = useLoading();
+  const [loading, setLoading] = useState(!hasLoaded);
   const [animationType, setAnimationType] = useState<'zoom' | 'type'>('zoom');
 
   useEffect(() => {
     setAnimationType(Math.random() > 0.5 ? 'zoom' : 'type');
   }, []);
 
+  const handlePreloaderComplete = () => {
+    setLoading(false);
+    setHasLoaded(true);
+  };
+
   return (
     <div className="min-h-screen text-white font-sans selection:bg-white selection:text-black relative">
-      <Preloader onComplete={() => setLoading(false)} />
+      {!hasLoaded && <Preloader onComplete={handlePreloaderComplete} />}
       <StarBackground />
       <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       
@@ -116,13 +124,17 @@ export default function Home() {
           </div>
           <HeroTitle />
           <div className="flex flex-col sm:flex-row gap-6">
-            <MagneticButton className="bg-white text-black px-6 py-3 rounded-full text-base font-bold hover:bg-zinc-200 transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.3)] cursor-pointer">
-              Start Your Project
-            </MagneticButton>
-            <MagneticButton className="group border border-zinc-700 text-white px-6 py-3 rounded-full text-base font-bold hover:bg-zinc-900 transition-all hover:border-zinc-500 flex items-center gap-2 cursor-pointer">
-              View Our Work
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
-            </MagneticButton>
+            <Link href="/start-project">
+              <MagneticButton className="bg-white text-black px-6 py-3 rounded-full text-base font-bold hover:bg-zinc-200 transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.3)] cursor-pointer">
+                Start Your Project
+              </MagneticButton>
+            </Link>
+            <Link href="/work">
+              <MagneticButton className="group border border-zinc-700 text-white px-6 py-3 rounded-full text-base font-bold hover:bg-zinc-900 transition-all hover:border-zinc-500 flex items-center gap-2 cursor-pointer">
+                View Our Work
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
+              </MagneticButton>
+            </Link>
           </div>
         </FadeIn>
         <ScrollToBottomBall />

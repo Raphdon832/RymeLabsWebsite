@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import GrainOverlay from "@/components/GrainOverlay";
+import { LoadingProvider } from "@/context/LoadingContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,9 +34,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
       >
-        <CustomCursor />
-        <GrainOverlay />
-        <SmoothScroll>{children}</SmoothScroll>
+        <LoadingProvider>
+          <CustomCursor />
+          <GrainOverlay />
+          <SmoothScroll>{children}</SmoothScroll>
+        </LoadingProvider>
       </body>
     </html>
   );
