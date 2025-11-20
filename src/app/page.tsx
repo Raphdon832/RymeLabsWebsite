@@ -215,11 +215,11 @@ export default function Home() {
       </section>
 
       {/* Partners Section */}
-      <section className="px-6 py-32 border-t border-white/5 bg-black/20">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative z-20 px-6 py-32 border-t border-white/5 bg-black/40 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto relative">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Trusted by Industry Leaders</h2>
-            <p className="text-zinc-400">Powering the next generation of digital experiences.</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white drop-shadow-lg">Trusted by Industry Leaders</h2>
+            <p className="text-zinc-400 text-lg">Powering the next generation of digital experiences.</p>
           </div>
           
           <FadeIn>
