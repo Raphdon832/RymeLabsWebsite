@@ -216,20 +216,22 @@ export default function Home() {
 
       {/* Partners Section */}
       <section className="px-6 py-32 border-t border-white/5 bg-black/20">
-        <FadeIn className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">Trusted by Industry Leaders</h2>
             <p className="text-zinc-400">Powering the next generation of digital experiences.</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
-            {["UrbanDev Studio", "UrbanDev Games", "5Stars Consulting", "5Stars Premier League", "Fivescores.com"].map((partner, i) => (
-              <div key={i} className="w-full flex justify-center p-4 hover:bg-white/5 rounded-xl transition-colors duration-300">
-                <PartnerLogo name={partner} />
-              </div>
-            ))}
-          </div>
-        </FadeIn>
+          <FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
+              {["UrbanDev Studio", "UrbanDev Games", "5Stars Consulting", "5Stars Premier League", "Fivescores.com"].map((partner, i) => (
+                <div key={i} className="w-full flex justify-center p-4 hover:bg-white/5 rounded-xl transition-colors duration-300">
+                  <PartnerLogo name={partner} />
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
       </section>
 
       {/* Footer */}
