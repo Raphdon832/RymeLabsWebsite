@@ -10,24 +10,28 @@ const products = [
     description:
       "A signature product delivering unique digital experiences. Fomz revolutionizes how users interact with digital content through immersive interfaces.",
     color: "blue" as const,
+    slug: null,
   },
   {
     title: "Pharmasea",
     description:
       "Navigating the future of pharmaceutical technology. An AI-driven platform for supply chain optimization and drug discovery acceleration.",
     color: "emerald" as const,
+    slug: "pharmasea",
   },
   {
     title: "WhitePaper",
     description:
       "Streamlining information with intelligent document solutions. The next generation of knowledge management for enterprise.",
     color: "orange" as const,
+    slug: null,
   },
   {
     title: "Nebula Core",
     description:
       "Cloud infrastructure management reimagined. Autonomous scaling and self-healing capabilities for mission-critical systems.",
     color: "purple" as const,
+    slug: null,
   },
 ];
 
@@ -48,9 +52,16 @@ export default function ProductsPage() {
 
       <FadeIn delay={0.15} inView={false}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {products.map((product) => (
-            <ProductCard key={product.title} {...product} />
-          ))}
+          {products.map((product) => {
+            const { slug, ...cardProps } = product;
+            return slug ? (
+              <Link key={product.title} href={`/products/${slug}`}>
+                <ProductCard {...cardProps} />
+              </Link>
+            ) : (
+              <ProductCard key={product.title} {...cardProps} />
+            );
+          })}
         </div>
       </FadeIn>
 
