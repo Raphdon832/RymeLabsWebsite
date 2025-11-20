@@ -14,12 +14,15 @@ import MenuOverlay from "@/components/MenuOverlay";
 import { Marquee } from "@/components/Marquee";
 import { ProductCard } from "@/components/ProductCard";
 import { PartnerLogo } from "@/components/PartnerLogo";
+import MagneticButton from "@/components/MagneticButton";
+import Preloader from "@/components/Preloader";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen text-white font-sans selection:bg-white selection:text-black relative">
+      <Preloader />
       <StarBackground />
       <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       
@@ -37,16 +40,16 @@ export default function Home() {
           <span className="text-xl font-bold tracking-tight text-white">RymeLabs</span>
         </div>
         
-        <button 
+        <MagneticButton 
           onClick={() => setIsMenuOpen(true)}
-          className="group bg-white/5 border border-white/10 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-all hover:scale-105 active:scale-95 flex items-center gap-3 backdrop-blur-sm"
+          className="group bg-white/5 border border-white/10 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-all hover:scale-105 active:scale-95 flex items-center gap-3 backdrop-blur-sm cursor-pointer"
         >
           <span className="tracking-wide">MENU</span>
           <div className="flex flex-col gap-[5px] items-end">
             <span className="w-6 h-[2px] bg-white rounded-full group-hover:w-4 transition-all duration-300"></span>
             <span className="w-4 h-[2px] bg-white rounded-full group-hover:w-6 transition-all duration-300"></span>
           </div>
-        </button>
+        </MagneticButton>
       </header>
 
       {/* Hero Section */}
@@ -60,13 +63,13 @@ export default function Home() {
           </div>
           <HeroTitle />
           <div className="flex flex-col sm:flex-row gap-6">
-            <button className="bg-white text-black px-6 py-3 rounded-full text-base font-bold hover:bg-zinc-200 transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+            <MagneticButton className="bg-white text-black px-6 py-3 rounded-full text-base font-bold hover:bg-zinc-200 transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.3)] cursor-pointer">
               Start Your Project
-            </button>
-            <button className="group border border-zinc-700 text-white px-6 py-3 rounded-full text-base font-bold hover:bg-zinc-900 transition-all hover:border-zinc-500 flex items-center gap-2">
+            </MagneticButton>
+            <MagneticButton className="group border border-zinc-700 text-white px-6 py-3 rounded-full text-base font-bold hover:bg-zinc-900 transition-all hover:border-zinc-500 flex items-center gap-2 cursor-pointer">
               View Our Work
               <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
-            </button>
+            </MagneticButton>
           </div>
         </FadeIn>
         <ScrollToBottomBall />
