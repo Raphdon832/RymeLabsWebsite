@@ -17,7 +17,7 @@ export default function ContactPage() {
           <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-zinc-500">
             Let’s build together
           </h1>
-          <p className="text-xl text-zinc-400">
+          <p className="text-lg text-zinc-400">
             Tell us about your vision and we’ll design the path forward.
           </p>
         </div>
@@ -64,7 +64,7 @@ export default function ContactPage() {
           </div>
 
           <div className="pt-4">
-            <MagneticButton className="w-full bg-white text-black py-4 rounded-xl font-bold text-lg hover:bg-zinc-200 transition-colors">
+            <MagneticButton className="w-full bg-white text-black py-4 rounded-xl font-bold text-base hover:bg-zinc-200 transition-colors">
               Send Message
             </MagneticButton>
           </div>

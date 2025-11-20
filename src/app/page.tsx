@@ -147,7 +147,7 @@ export default function Home() {
         <FadeIn className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-zinc-500 bg-clip-text text-transparent">What We Create</h2>
-            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">We don't just write code; we engineer digital ecosystems designed for scale, performance, and impact.</p>
+            <p className="text-zinc-400 text-base max-w-2xl mx-auto">We don't just write code; we engineer digital ecosystems designed for scale, performance, and impact.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -178,8 +178,8 @@ export default function Home() {
                 <div className="w-16 h-16 bg-zinc-800/50 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300 border border-white/5">
                   {item.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">{item.title}</h3>
-                <p className="text-zinc-400 leading-relaxed">{item.desc}</p>
+                <h3 className="text-xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">{item.title}</h3>
+                <p className="text-zinc-400 leading-relaxed text-sm">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -199,7 +199,7 @@ export default function Home() {
                 <span className="text-blue-400 font-mono text-xs tracking-widest uppercase">Innovation Lab</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-zinc-500">Our Products</h2>
-              <p className="text-zinc-400 text-lg max-w-xl">Innovative solutions built in-house to solve real-world problems.</p>
+              <p className="text-zinc-400 text-base max-w-xl">Innovative solutions built in-house to solve real-world problems.</p>
             </div>
             <a href="#" className="text-white border-b border-white pb-1 hover:text-zinc-300 hover:border-zinc-300 transition-colors">View all products →</a>
           </div>
@@ -270,14 +270,14 @@ export default function Home() {
                 <div className="h-12 w-12 mb-6 rounded-full bg-white/5 flex items-center justify-center text-zinc-500 group-hover:text-white group-hover:bg-white/10 transition-colors">
                   <span className="font-bold text-lg">{client.name[0]}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-zinc-200 group-hover:text-white">{client.name}</h3>
+                <h3 className="text-lg font-bold mb-2 text-zinc-200 group-hover:text-white">{client.name}</h3>
                 <p className="text-sm text-zinc-500 group-hover:text-zinc-400">{client.type}</p>
               </div>
             ))}
           </Marquee>
           
           <div className="mt-16 text-center">
-            <p className="text-zinc-500 text-lg">...and many more successful deployments.</p>
+            <p className="text-zinc-500 text-base">...and many more successful deployments.</p>
           </div>
         </FadeIn>
       </section>
@@ -287,7 +287,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white drop-shadow-lg">Trusted by Industry Leaders</h2>
-            <p className="text-zinc-400 text-lg">Powering the next generation of digital experiences.</p>
+            <p className="text-zinc-400 text-base">Powering the next generation of digital experiences.</p>
           </div>
           
           <FadeIn>

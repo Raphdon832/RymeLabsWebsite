@@ -40,7 +40,7 @@ export default function ProductsPage() {
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-zinc-500">
             Our Products
           </h1>
-          <p className="text-xl text-zinc-400 max-w-3xl">
+          <p className="text-lg text-zinc-400 max-w-3xl">
             Proprietary technologies engineered to redefine industry standards and deliver measurable impact.
           </p>
         </div>
@@ -57,9 +57,9 @@ export default function ProductsPage() {
       <FadeIn delay={0.3} inView={false}>
         <div className="mt-32 text-center">
           <p className="text-sm uppercase tracking-[0.4em] text-zinc-500 mb-4">Next Steps</p>
-          <h2 className="text-3xl font-bold mb-8">Ready to build the future?</h2>
+          <h2 className="text-2xl font-bold mb-8">Ready to build the future?</h2>
           <Link href="/start-project">
-            <MagneticButton className="bg-white text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-zinc-200 transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.3)] inline-block">
+            <MagneticButton className="bg-white text-black px-8 py-4 rounded-full text-base font-bold hover:bg-zinc-200 transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.3)] inline-block">
               Start Your Project
             </MagneticButton>
           </Link>

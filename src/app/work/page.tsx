@@ -18,7 +18,7 @@ export default function WorkPage() {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-zinc-500">
               Selected Work
             </h1>
-            <p className="text-xl text-zinc-400 max-w-2xl">
+            <p className="text-lg text-zinc-400 max-w-2xl">
               A showcase of our most ambitious projects and collaborations.
             </p>
           </div>
@@ -42,8 +42,8 @@ export default function WorkPage() {
               </div>
               <div className="flex justify-between items-end border-b border-white/10 pb-8">
                 <div>
-                  <h3 className="text-4xl font-bold mb-2 group-hover:text-white transition-colors">{project.title}</h3>
-                  <p className="text-zinc-400 text-lg">{project.category}</p>
+                  <h3 className="text-3xl font-bold mb-2 group-hover:text-white transition-colors">{project.title}</h3>
+                  <p className="text-zinc-400 text-base">{project.category}</p>
                 </div>
                 <span className="text-zinc-500 font-mono">{project.year}</span>
               </div>

@@ -48,11 +48,10 @@ body {
 
 @media (max-width: 768px) {
   .solutions-headline-truncate {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    line-clamp: 3;
-    overflow: hidden;
+    display: block;
+    line-height: 1.1;
+    max-height: none;
+    overflow: visible;
     word-break: break-word;
   }
 }

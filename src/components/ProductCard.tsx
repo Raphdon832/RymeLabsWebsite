@@ -73,8 +73,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ title, description, co
         {/* Content */}
         <div className="flex-grow flex flex-col justify-between">
             <div>
-                <h3 className={`text-2xl md:text-3xl font-bold text-white mb-2 md:mb-3 tracking-tight transition-colors duration-300 ${theme.text}`}>{title}</h3>
-                <p className="text-zinc-400 leading-relaxed text-sm md:text-base">{description}</p>
+                <h3 className={`text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 tracking-tight transition-colors duration-300 ${theme.text}`}>{title}</h3>
+                <p className="text-zinc-400 leading-relaxed text-xs md:text-sm">{description}</p>
             </div>
             
             <div className="flex items-center justify-between mt-4 md:mt-6 pt-4 md:pt-6 border-t border-white/5">
