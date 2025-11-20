@@ -34,7 +34,16 @@ export default function Home() {
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 flex items-center justify-center">
             {!loading && (
-              <motion.div layoutId="logo-icon" className="relative w-8 h-8">
+              <motion.div 
+                layoutId="logo-icon" 
+                className="relative w-8 h-8"
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 25,
+                  mass: 1
+                }}
+              >
                 <Image 
                   src="/RymeLabsIcon.png" 
                   alt="RymeLabs" 
