@@ -74,7 +74,7 @@ export default function Home() {
       <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/50 backdrop-blur-md">
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-black/50 backdrop-blur-md">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 flex items-center justify-center">
             {!loading && (
