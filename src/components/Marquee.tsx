@@ -60,10 +60,6 @@ export const Marquee = ({
         className="flex flex-nowrap gap-8 w-max cursor-grab active:cursor-grabbing"
         style={{ x: baseX }}
         drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.000001}
-        onDragStart={() => setIsHovered(true)}
-        onDragEnd={() => setIsHovered(false)}
       >
         <div ref={measureRef} className="flex gap-8 shrink-0">
             {children}
