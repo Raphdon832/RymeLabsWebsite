@@ -1,14 +1,16 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 interface ProductCardProps {
   title: string;
   description: string;
   color: "blue" | "purple" | "emerald" | "orange";
+  href?: string;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ title, description, color }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ title, description, color, href }) => {
   const colorMap = {
     blue: {
       gradient: "from-blue-500/20 via-cyan-500/10 to-transparent",
@@ -42,7 +44,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ title, description, co
 
   const theme = colorMap[color];
 
-  return (
+  const CardContent = (
     <div className={`group relative w-[280px] md:w-[400px] h-[450px] md:h-[520px] rounded-[2rem] md:rounded-[2.5rem] bg-zinc-900/80 border border-white/5 overflow-hidden transition-all duration-500 ${theme.border} hover:shadow-2xl hover:shadow-black/50`}>
       {/* Ambient Glow */}
       <div className={`absolute -top-32 -right-32 w-96 h-96 rounded-full blur-[120px] transition-all duration-700 opacity-0 group-hover:opacity-100 ${theme.glow}`} />
@@ -89,4 +91,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ title, description, co
       </div>
     </div>
   );
+
+  if (href) {
+    return <Link href={href}>{CardContent}</Link>;
+  }
+
+  return CardContent;
 };
