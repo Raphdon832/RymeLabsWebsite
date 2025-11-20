@@ -17,26 +17,34 @@ import { PartnerLogo } from "@/components/PartnerLogo";
 import MagneticButton from "@/components/MagneticButton";
 import Preloader from "@/components/Preloader";
 
+import { motion } from "framer-motion";
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   return (
     <div className="min-h-screen text-white font-sans selection:bg-white selection:text-black relative">
-      <Preloader />
+      <Preloader onComplete={() => setLoading(false)} />
       <StarBackground />
       <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/50 backdrop-blur-md">
         <div className="flex items-center gap-3">
-          <Image 
-            src="/RymeLabsIcon.png" 
-            alt="RymeLabs" 
-            width={40} 
-            height={40} 
-            className="h-8 w-auto object-contain"
-            priority
-          />
+          <div className="w-10 h-10 flex items-center justify-center">
+            {!loading && (
+              <motion.div layoutId="logo-icon" className="relative w-8 h-8">
+                <Image 
+                  src="/RymeLabsIcon.png" 
+                  alt="RymeLabs" 
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </motion.div>
+            )}
+          </div>
           <span className="text-xl font-bold tracking-tight text-white">RymeLabs</span>
         </div>
         

@@ -2,9 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
-export default function Preloader() {
+interface PreloaderProps {
+  onComplete?: () => void;
+}
+
+export default function Preloader({ onComplete }: PreloaderProps) {
   const [count, setCount] = useState(0);
+  const [showLogo, setShowLogo] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -12,7 +18,8 @@ export default function Preloader() {
       setCount((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(() => setIsLoading(false), 500);
+          // After count finishes, show logo
+          setTimeout(() => setShowLogo(true), 200);
           return 100;
         }
         return prev + 1;
@@ -22,25 +29,55 @@ export default function Preloader() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    if (showLogo) {
+      // After logo shows for a bit, finish loading
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+        if (onComplete) onComplete();
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [showLogo, onComplete]);
+
   return (
     <AnimatePresence mode="wait">
       {isLoading && (
         <motion.div
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black text-white"
-          exit={{ y: "-100%" }}
-          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          <div className="flex items-end overflow-hidden">
-            <motion.span
-              className="text-9xl font-bold tracking-tighter"
-              initial={{ y: 100 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.5 }}
+          {!showLogo ? (
+            <div className="flex items-end overflow-hidden">
+              <motion.span
+                className="text-9xl font-bold tracking-tighter"
+                initial={{ y: 100 }}
+                animate={{ y: 0 }}
+                exit={{ y: -100, opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                {count}
+              </motion.span>
+              <span className="text-2xl font-bold mb-4 ml-2">%</span>
+            </div>
+          ) : (
+            <motion.div 
+              layoutId="logo-icon"
+              className="relative w-32 h-32 md:w-48 md:h-48"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              {count}
-            </motion.span>
-            <span className="text-2xl font-bold mb-4 ml-2">%</span>
-          </div>
+              <Image 
+                src="/RymeLabsIcon.png" 
+                alt="RymeLabs" 
+                fill
+                className="object-contain"
+                priority
+              />
+            </motion.div>
+          )}
         </motion.div>
       )}
     </AnimatePresence>
