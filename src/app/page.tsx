@@ -13,6 +13,7 @@ import ScrollToBottomBall from "@/components/ScrollToBottomBall";
 import MenuOverlay from "@/components/MenuOverlay";
 import { Marquee } from "@/components/Marquee";
 import { ProductCard } from "@/components/ProductCard";
+import { PartnerLogo } from "@/components/PartnerLogo";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -215,12 +216,16 @@ export default function Home() {
 
       {/* Partners Section */}
       <section className="px-6 py-32 border-t border-white/5 bg-black/20">
-        <FadeIn className="max-w-7xl mx-auto text-center">
-          <p className="text-sm font-semibold tracking-widest text-zinc-500 uppercase mb-12">Trusted by Industry Leaders</p>
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
+        <FadeIn className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">Trusted by Industry Leaders</h2>
+            <p className="text-zinc-400">Powering the next generation of digital experiences.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
             {["UrbanDev Studio", "UrbanDev Games", "5Stars Consulting", "5Stars Premier League", "Fivescores.com"].map((partner, i) => (
-              <div key={i} className="text-xl md:text-2xl font-bold text-white hover:text-zinc-300 transition-colors cursor-default">
-                {partner}
+              <div key={i} className="w-full flex justify-center p-4 hover:bg-white/5 rounded-xl transition-colors duration-300">
+                <PartnerLogo name={partner} />
               </div>
             ))}
           </div>
