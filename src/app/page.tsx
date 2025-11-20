@@ -236,9 +236,9 @@ export default function Home() {
       <footer className="px-6 py-20 border-t border-white/10 bg-black/80 backdrop-blur-md relative">
         <ScrollToTopBall />
         <FadeIn className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="col-span-1 md:col-span-2">
+          <div className="col-span-1">
             <div className="text-3xl font-bold tracking-tighter mb-6">RymeLabs</div>
-            <p className="text-zinc-400 max-w-sm text-lg leading-relaxed">
+            <p className="text-zinc-400 text-lg leading-relaxed">
               Pioneering the digital frontier with code, creativity, and cutting-edge technology.
             </p>
           </div>
@@ -248,7 +248,6 @@ export default function Home() {
               <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
           <div>
@@ -257,6 +256,13 @@ export default function Home() {
               <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Cookie Policy</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-bold text-white mb-6">Contact</h4>
+            <ul className="space-y-4 text-zinc-400">
+              <li className="leading-relaxed">11C Dream City Estate,<br/>Abuja, Nigeria</li>
+              <li><a href="tel:+234706010242" className="hover:text-white transition-colors">+234 706 010 242</a></li>
             </ul>
           </div>
         </FadeIn>
