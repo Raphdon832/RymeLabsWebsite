@@ -35,13 +35,13 @@ const HeaderText = ({ type }: { type: 'zoom' | 'type' }) => {
   }
   
   return (
-    <motion.div className="text-xl font-bold tracking-tight text-white flex overflow-hidden">
+    <motion.div className="text-xl font-bold tracking-tight text-white flex">
       {Array.from("RymeLabs").map((char, i) => (
         <motion.span
           key={i}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.2 + i * 0.05, ease: "easeOut" }}
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.2, delay: 0.2 + i * 0.05, ease: "easeOut" }}
         >
           {char}
         </motion.span>
