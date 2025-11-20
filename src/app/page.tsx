@@ -201,7 +201,7 @@ export default function Home() {
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-zinc-500">Our Products</h2>
               <p className="text-zinc-400 text-base max-w-xl">Innovative solutions built in-house to solve real-world problems.</p>
             </div>
-            <a href="#" className="text-white border-b border-white pb-1 hover:text-zinc-300 hover:border-zinc-300 transition-colors">View all products →</a>
+            <a href="/products" className="text-white border-b border-white pb-1 hover:text-zinc-300 hover:border-zinc-300 transition-colors">View all products →</a>
           </div>
 
           <Marquee className="py-4" baseVelocity={-0.2}>
@@ -209,39 +209,46 @@ export default function Home() {
               {
                 name: "Fomz by RymeLabs",
                 desc: "A signature product delivering unique digital experiences.",
-                color: "blue" as const
+                color: "blue" as const,
+                href: "/products/fomz"
               },
               {
                 name: "Pharmasea",
                 desc: "Navigating the future of pharmaceutical technology.",
-                color: "emerald" as const
+                color: "emerald" as const,
+                href: "/products/pharmasea"
               },
               {
                 name: "WhitePaper",
                 desc: "Streamlining information with intelligent document solutions.",
-                color: "orange" as const
+                color: "orange" as const,
+                href: "/products/whitepaper"
               },
               {
                 name: "Fomz by RymeLabs",
                 desc: "A signature product delivering unique digital experiences.",
-                color: "blue" as const
+                color: "blue" as const,
+                href: "/products/fomz"
               },
               {
                 name: "Pharmasea",
                 desc: "Navigating the future of pharmaceutical technology.",
-                color: "emerald" as const
+                color: "emerald" as const,
+                href: "/products/pharmasea"
               },
               {
                 name: "WhitePaper",
                 desc: "Streamlining information with intelligent document solutions.",
-                color: "orange" as const
+                color: "orange" as const,
+                href: "/products/whitepaper"
               }
             ].map((product, i) => (
               <div key={i} className="mx-4">
                 <ProductCard 
                   title={product.name} 
                   description={product.desc} 
-                  color={product.color} 
+                  color={product.color}
+                  href={product.href}
                 />
               </div>
             ))}
