@@ -13,19 +13,19 @@ interface FadeInProps {
 
 export default function FadeIn({ children, className, delay = 0, direction = "up", fullWidth = false }: FadeInProps) {
   const directions = {
-    up: { y: 40, x: 0 },
-    down: { y: -40, x: 0 },
-    left: { x: 40, y: 0 },
-    right: { x: -40, y: 0 },
-    none: { x: 0, y: 0 },
+    up: { y: 100, x: 0, skewY: 3 },
+    down: { y: -100, x: 0, skewY: -3 },
+    left: { x: 100, y: 0, skewX: 3 },
+    right: { x: -100, y: 0, skewX: -3 },
+    none: { x: 0, y: 0, skewX: 0, skewY: 0 },
   };
 
   return (
     <motion.div
       initial={{ opacity: 0, ...directions[direction] }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: false, margin: "-100px" }}
-      transition={{ duration: 0.7, delay, ease: "easeOut" }}
+      whileInView={{ opacity: 1, x: 0, y: 0, skewX: 0, skewY: 0 }}
+      viewport={{ once: false, margin: "-10% 0px -10% 0px" }}
+      transition={{ duration: 0.8, delay, ease: [0.25, 0.4, 0.25, 1] }}
       className={`${className} ${fullWidth ? "w-full" : ""}`}
     >
       {children}
