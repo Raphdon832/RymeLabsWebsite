@@ -53,12 +53,16 @@ export default function SolutionsPage() {
       <FadeIn inView={false}>
         <div className="mb-20">
           <p className="text-sm uppercase tracking-[0.4em] text-zinc-500 mb-6">Capabilities</p>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance">
-            Solutions engineered for {" "}
-            <RotatingHeadline
-              phrases={rotatingPhrases}
-              className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-blue-400"
-            />
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance solutions-headline-truncate">
+            <span className="block sm:inline">Solutions engineered for</span>
+            <span className="hidden sm:inline">{' '}</span>
+            <span className="block sm:inline sm:ml-2 mt-2 sm:mt-0">
+              <RotatingHeadline
+                phrases={rotatingPhrases}
+                noWrap={false}
+                className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-blue-400 sm:whitespace-nowrap"
+              />
+            </span>
           </h1>
           <p className="text-xl text-zinc-400 max-w-3xl">
             Tailored strategies for complex digital challenges — from infrastructure to immersive brand experiences.
