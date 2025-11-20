@@ -10,6 +10,7 @@ const products = [
     description:
       "A signature product delivering unique digital experiences. Fomz revolutionizes how users interact with digital content through immersive interfaces.",
     color: "blue" as const,
+    href: "/products/fomz",
   },
   {
     title: "Pharmasea",
@@ -23,6 +24,7 @@ const products = [
     description:
       "Streamlining information with intelligent document solutions. The next generation of knowledge management for enterprise.",
     color: "orange" as const,
+    href: "/products/whitepaper",
   },
   {
     title: "Nebula Core",
