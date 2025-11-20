@@ -64,7 +64,7 @@ export default function SolutionsPage() {
               />
             </span>
           </h1>
-          <p className="text-xl text-zinc-400 max-w-3xl">
+          <p className="text-lg text-zinc-400 max-w-3xl">
             Tailored strategies for complex digital challenges — from infrastructure to immersive brand experiences.
           </p>
         </div>
@@ -88,9 +88,9 @@ export default function SolutionsPage() {
       <FadeIn delay={0.3} inView={false}>
         <div className="mt-32 flex flex-col items-center text-center">
           <p className="text-sm uppercase tracking-[0.4em] text-zinc-500 mb-4">Partnership</p>
-          <h2 className="text-3xl font-bold mb-8">Have a specific challenge?</h2>
+          <h2 className="text-2xl font-bold mb-8">Have a specific challenge?</h2>
           <Link href="/contact">
-            <MagneticButton className="bg-transparent border border-white/20 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-black transition-all hover:scale-105 active:scale-95">
+            <MagneticButton className="bg-transparent border border-white/20 text-white px-8 py-4 rounded-full text-base font-bold hover:bg-white hover:text-black transition-all hover:scale-105 active:scale-95">
               Talk to an Expert
             </MagneticButton>
           </Link>

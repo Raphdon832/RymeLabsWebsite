@@ -24,8 +24,8 @@ export default function ShimmerCard({ title, description }: ShimmerCardProps) {
 
       {/* Content */}
       <div className="relative p-8 z-10 h-full flex flex-col">
-        <h3 className="text-2xl font-bold mb-4 group-hover:text-blue-400 transition-colors">{title}</h3>
-        <p className="text-zinc-400 leading-relaxed flex-grow">{description}</p>
+        <h3 className="text-xl font-bold mb-4 group-hover:text-blue-400 transition-colors">{title}</h3>
+        <p className="text-sm text-zinc-400 leading-relaxed flex-grow">{description}</p>
       </div>
     </div>
   );
