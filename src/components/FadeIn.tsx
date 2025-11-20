@@ -24,7 +24,7 @@ export default function FadeIn({ children, className, delay = 0, direction = "up
     <motion.div
       initial={{ opacity: 0, ...directions[direction] }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: false, margin: "-100px" }}
       transition={{ duration: 0.7, delay, ease: "easeOut" }}
       className={`${className} ${fullWidth ? "w-full" : ""}`}
     >
