@@ -18,10 +18,46 @@ import MagneticButton from "@/components/MagneticButton";
 import Preloader from "@/components/Preloader";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+
+const HeaderText = ({ type }: { type: 'zoom' | 'type' }) => {
+  if (type === 'zoom') {
+    return (
+      <motion.span
+        className="text-xl font-bold tracking-tight text-white block"
+        initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
+        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+      >
+        RymeLabs
+      </motion.span>
+    );
+  }
+  
+  return (
+    <motion.div className="text-xl font-bold tracking-tight text-white flex overflow-hidden">
+      {Array.from("RymeLabs").map((char, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.2 + i * 0.05, ease: "easeOut" }}
+        >
+          {char}
+        </motion.span>
+      ))}
+    </motion.div>
+  );
+};
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [animationType, setAnimationType] = useState<'zoom' | 'type'>('zoom');
+
+  useEffect(() => {
+    setAnimationType(Math.random() > 0.5 ? 'zoom' : 'type');
+  }, []);
 
   return (
     <div className="min-h-screen text-white font-sans selection:bg-white selection:text-black relative">
@@ -54,7 +90,7 @@ export default function Home() {
               </motion.div>
             )}
           </div>
-          <span className="text-xl font-bold tracking-tight text-white">RymeLabs</span>
+          {!loading && <HeaderText type={animationType} />}
         </div>
         
         <MagneticButton 
