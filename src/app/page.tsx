@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import BinaryBackground from "@/components/BinaryBackground";
 import GlobeBackground from "@/components/GlobeBackground";
@@ -7,22 +10,41 @@ import HeroTitle from "@/components/HeroTitle";
 import FadeIn from "@/components/FadeIn";
 import ScrollToTopBall from "@/components/ScrollToTopBall";
 import ScrollToBottomBall from "@/components/ScrollToBottomBall";
+import MenuOverlay from "@/components/MenuOverlay";
+import { Marquee } from "@/components/Marquee";
+import { ProductCard } from "@/components/ProductCard";
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen text-white font-sans selection:bg-white selection:text-black relative">
       <StarBackground />
+      <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/50 backdrop-blur-md">
-        <div className="text-2xl font-bold tracking-tighter">RymeLabs</div>
-        <nav className="hidden md:flex gap-8 text-sm font-medium text-zinc-400">
-          <a href="#" className="hover:text-white transition-colors">Products</a>
-          <a href="#" className="hover:text-white transition-colors">Solutions</a>
-          <a href="#" className="hover:text-white transition-colors">Company</a>
-          <a href="#" className="hover:text-white transition-colors">Contact</a>
-        </nav>
-        <button className="bg-white text-black px-5 py-2 rounded-full text-sm font-semibold hover:bg-zinc-200 transition-all hover:scale-105 active:scale-95">
-          Get Started
+        <div className="flex items-center gap-3">
+          <Image 
+            src="/RymeLabsIcon.png" 
+            alt="RymeLabs" 
+            width={40} 
+            height={40} 
+            className="h-8 w-auto object-contain"
+            priority
+          />
+          <span className="text-xl font-bold tracking-tight text-white">RymeLabs</span>
+        </div>
+        
+        <button 
+          onClick={() => setIsMenuOpen(true)}
+          className="group bg-white/5 border border-white/10 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-all hover:scale-105 active:scale-95 flex items-center gap-3 backdrop-blur-sm"
+        >
+          <span className="tracking-wide">MENU</span>
+          <div className="flex flex-col gap-[5px] items-end">
+            <span className="w-6 h-[2px] bg-white rounded-full group-hover:w-4 transition-all duration-300"></span>
+            <span className="w-4 h-[2px] bg-white rounded-full group-hover:w-6 transition-all duration-300"></span>
+          </div>
         </button>
       </header>
 
@@ -42,7 +64,7 @@ export default function Home() {
             </button>
             <button className="group border border-zinc-700 text-white px-6 py-3 rounded-full text-base font-bold hover:bg-zinc-900 transition-all hover:border-zinc-500 flex items-center gap-2">
               View Our Work
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
             </button>
           </div>
         </FadeIn>
@@ -103,48 +125,58 @@ export default function Home() {
         <FadeIn className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Our Products</h2>
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                <span className="text-blue-400 font-mono text-xs tracking-widest uppercase">Innovation Lab</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-zinc-500">Our Products</h2>
               <p className="text-zinc-400 text-lg max-w-xl">Innovative solutions built in-house to solve real-world problems.</p>
             </div>
             <a href="#" className="text-white border-b border-white pb-1 hover:text-zinc-300 hover:border-zinc-300 transition-colors">View all products →</a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <Marquee className="py-4" baseVelocity={-0.2}>
             {[
               {
                 name: "Fomz by RymeLabs",
                 desc: "A signature product delivering unique digital experiences.",
-                gradient: "from-blue-500/20 to-purple-500/20",
-                border: "group-hover:border-blue-500/30"
+                color: "blue" as const
               },
               {
                 name: "Pharmasea",
                 desc: "Navigating the future of pharmaceutical technology.",
-                gradient: "from-emerald-500/20 to-teal-500/20",
-                border: "group-hover:border-emerald-500/30"
+                color: "emerald" as const
               },
               {
                 name: "WhitePaper",
                 desc: "Streamlining information with intelligent document solutions.",
-                gradient: "from-orange-500/20 to-red-500/20",
-                border: "group-hover:border-orange-500/30"
+                color: "orange" as const
+              },
+              {
+                name: "Fomz by RymeLabs",
+                desc: "A signature product delivering unique digital experiences.",
+                color: "blue" as const
+              },
+              {
+                name: "Pharmasea",
+                desc: "Navigating the future of pharmaceutical technology.",
+                color: "emerald" as const
+              },
+              {
+                name: "WhitePaper",
+                desc: "Streamlining information with intelligent document solutions.",
+                color: "orange" as const
               }
             ].map((product, i) => (
-              <div key={i} className={`group relative overflow-hidden rounded-[2rem] bg-zinc-900/40 border border-white/10 p-1 transition-all duration-500 hover:bg-zinc-900/60 ${product.border}`}>
-                <div className={`absolute inset-0 bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl`} />
-                <div className="relative h-full bg-black/40 backdrop-blur-sm rounded-[1.8rem] p-8 flex flex-col">
-                  <div className="h-48 mb-8 rounded-2xl bg-gradient-to-br from-zinc-800 to-zinc-900 border border-white/5 flex items-center justify-center overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
-                    <div className="text-zinc-700 font-mono text-xs tracking-widest uppercase">UI Preview</div>
-                  </div>
-                  <h3 className="text-2xl font-bold mb-3">{product.name}</h3>
-                  <p className="text-zinc-400 mb-8 flex-grow">{product.desc}</p>
-                  <div className="flex items-center text-sm font-medium text-white group-hover:translate-x-2 transition-transform">
-                    Learn more <span className="ml-2">→</span>
-                  </div>
-                </div>
+              <div key={i} className="mx-4">
+                <ProductCard 
+                  title={product.name} 
+                  description={product.desc} 
+                  color={product.color} 
+                />
               </div>
             ))}
-          </div>
+          </Marquee>
         </FadeIn>
       </section>
 
@@ -154,14 +186,18 @@ export default function Home() {
         <FadeIn className="max-w-7xl mx-auto relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold mb-20 text-center">Client Success Stories</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <Marquee className="py-4" baseVelocity={-0.2}>
             {[
+              { name: "Scenscia.com", type: "Web Platform" },
+              { name: "Lenox Phoenix", type: "Business Solution" },
+              { name: "Trackd", type: "Mobile Application" },
+              { name: "Fivescores.com", type: "Sports Analytics" },
               { name: "Scenscia.com", type: "Web Platform" },
               { name: "Lenox Phoenix", type: "Business Solution" },
               { name: "Trackd", type: "Mobile Application" },
               { name: "Fivescores.com", type: "Sports Analytics" }
             ].map((client, i) => (
-              <div key={i} className="group p-8 rounded-2xl bg-zinc-900/20 border border-white/5 hover:border-white/20 hover:bg-zinc-900/40 transition-all duration-300">
+              <div key={i} className="group p-8 rounded-2xl bg-zinc-900/20 border border-white/5 hover:border-white/20 hover:bg-zinc-900/40 transition-all duration-300 w-[280px] flex-shrink-0">
                 <div className="h-12 w-12 mb-6 rounded-full bg-white/5 flex items-center justify-center text-zinc-500 group-hover:text-white group-hover:bg-white/10 transition-colors">
                   <span className="font-bold text-lg">{client.name[0]}</span>
                 </div>
@@ -169,7 +205,7 @@ export default function Home() {
                 <p className="text-sm text-zinc-500 group-hover:text-zinc-400">{client.type}</p>
               </div>
             ))}
-          </div>
+          </Marquee>
           
           <div className="mt-16 text-center">
             <p className="text-zinc-500 text-lg">...and many more successful deployments.</p>

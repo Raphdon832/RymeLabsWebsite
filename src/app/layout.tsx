@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "RymeLabs - Innovating the Future",
   description: "RymeLabs is a leading tech company building the next generation of digital solutions.",
+  icons: {
+    icon: "/RymeLabsIcon.png",
+  },
 };
 
 export default function RootLayout({
