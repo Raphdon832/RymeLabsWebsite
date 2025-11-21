@@ -46,14 +46,14 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         <>
           <motion.div
             key="bg"
-            className="fixed inset-0 z-[9999] bg-black"
+            className="fixed inset-0 z-[9999] bg-background"
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
           />
           {!showLogo ? (
             <motion.div
               key="counter"
-              className="fixed inset-0 z-[10000] flex items-center justify-center text-white pointer-events-none"
+              className="fixed inset-0 z-[10000] flex items-center justify-center text-foreground pointer-events-none"
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
             >
@@ -88,7 +88,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                   src="/RymeLabsIcon.png" 
                   alt="RymeLabs" 
                   fill
-                  className="object-contain"
+                  className="object-contain dark:invert-0 invert"
                   priority
                 />
               </motion.div>

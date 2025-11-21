@@ -6,6 +6,7 @@ import CustomCursor from "@/components/CustomCursor";
 import GrainOverlay from "@/components/GrainOverlay";
 import { LoadingProvider } from "@/context/LoadingContext";
 import { AuthProvider } from "@/context/AuthContext";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,17 +32,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
-        <LoadingProvider>
-          <AuthProvider>
-            <CustomCursor />
-            <GrainOverlay />
-            <SmoothScroll>{children}</SmoothScroll>
-          </AuthProvider>
-        </LoadingProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <LoadingProvider>
+            <AuthProvider>
+              <CustomCursor />
+              <GrainOverlay />
+              <SmoothScroll>{children}</SmoothScroll>
+            </AuthProvider>
+          </LoadingProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

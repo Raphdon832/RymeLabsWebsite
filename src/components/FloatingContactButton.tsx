@@ -33,12 +33,12 @@ export default function FloatingContactButton() {
               href="https://wa.me/2347076236808"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center justify-center w-14 h-14 bg-black/20 backdrop-blur-xl border border-white/10 rounded-full shadow-lg hover:shadow-[#25D366]/30 transition-all duration-300"
+              className="group relative flex items-center justify-center w-14 h-14 bg-background/20 backdrop-blur-xl border border-border rounded-full shadow-lg hover:shadow-[#25D366]/30 transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               title="Chat on WhatsApp"
             >
-              <div className="absolute right-16 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none backdrop-blur-sm">
+              <div className="absolute right-16 bg-popover/80 text-popover-foreground text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none backdrop-blur-sm">
                 WhatsApp
               </div>
               <FaWhatsapp className="w-8 h-8 text-[#25D366]" />
@@ -47,12 +47,12 @@ export default function FloatingContactButton() {
             {/* Phone Button */}
             <motion.a
               href="tel:+2347076236808"
-              className="group relative flex items-center justify-center w-14 h-14 bg-black/20 backdrop-blur-xl border border-white/10 rounded-full shadow-lg hover:shadow-blue-600/30 transition-all duration-300"
+              className="group relative flex items-center justify-center w-14 h-14 bg-background/20 backdrop-blur-xl border border-border rounded-full shadow-lg hover:shadow-blue-600/30 transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               title="Call Us"
             >
-              <div className="absolute right-16 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none backdrop-blur-sm">
+              <div className="absolute right-16 bg-popover/80 text-popover-foreground text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none backdrop-blur-sm">
                 Call Now
               </div>
               <FaPhoneVolume className="w-6 h-6 text-blue-500" />
@@ -64,15 +64,15 @@ export default function FloatingContactButton() {
       {/* Main Toggle Button */}
       <motion.button
         onClick={toggleOpen}
-        className="relative flex items-center justify-center w-16 h-16 bg-black/40 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl text-white overflow-hidden z-10"
+        className="relative flex items-center justify-center w-16 h-16 bg-background/40 backdrop-blur-xl border border-border rounded-full shadow-2xl text-foreground overflow-hidden z-10"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-white/0" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-foreground/5 to-foreground/0" />
         
         {/* Pulse Effect */}
         {!isOpen && (
-          <span className="absolute inline-flex h-full w-full rounded-full bg-white/5 opacity-75 animate-ping" />
+          <span className="absolute inline-flex h-full w-full rounded-full bg-foreground/5 opacity-75 animate-ping" />
         )}
 
         <motion.div
@@ -80,9 +80,9 @@ export default function FloatingContactButton() {
           transition={{ duration: 0.3 }}
         >
           {isOpen ? (
-            <X className="w-8 h-8 text-white" />
+            <X className="w-8 h-8 text-foreground" />
           ) : (
-            <MessageCircle className="w-8 h-8 text-white" />
+            <MessageCircle className="w-8 h-8 text-foreground" />
           )}
         </motion.div>
       </motion.button>

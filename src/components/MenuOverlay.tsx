@@ -35,12 +35,12 @@ export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           exit={{ opacity: 0, scale: 1.5, filter: "blur(10px)" }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 backdrop-blur-2xl"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-background/95 backdrop-blur-2xl"
         >
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white transition-colors"
+            className="absolute top-6 right-6 p-2 text-muted-foreground hover:text-foreground transition-colors"
           >
             <svg
               className="w-8 h-8"
@@ -66,7 +66,7 @@ export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ delay: index * 0.1 + 0.1, duration: 0.5 }}
-                  className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500 hover:to-white transition-all duration-300 tracking-tight cursor-pointer"
+                  className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-foreground to-muted-foreground hover:to-foreground transition-all duration-300 tracking-tight cursor-pointer"
                   onClick={onClose}
                 >
                   {link.name}
@@ -82,7 +82,7 @@ export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 20 }}
                     transition={{ delay: navLinks.length * 0.1 + 0.1, duration: 0.5 }}
-                    className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-emerald-300 to-emerald-700 hover:to-emerald-200 transition-all duration-300 tracking-tight cursor-pointer"
+                    className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-emerald-600 to-emerald-400 dark:from-emerald-300 dark:to-emerald-700 hover:to-emerald-500 dark:hover:to-emerald-200 transition-all duration-300 tracking-tight cursor-pointer"
                     onClick={onClose}
                   >
                     Dashboard
@@ -93,7 +93,7 @@ export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ delay: navLinks.length * 0.1 + 0.2, duration: 0.5 }}
-                  className="text-xl md:text-2xl font-medium text-zinc-500 hover:text-white transition-all duration-300 tracking-tight cursor-pointer mt-4"
+                  className="text-xl md:text-2xl font-medium text-muted-foreground hover:text-foreground transition-all duration-300 tracking-tight cursor-pointer mt-4"
                   onClick={handleSignOut}
                 >
                   Sign Out

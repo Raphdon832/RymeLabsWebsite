@@ -42,12 +42,12 @@ export default function ScrollToTopBall() {
                 ease: "easeInOut",
               }
         }
-        className="w-12 h-12 rounded-full bg-white cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.8)] flex items-center justify-center pointer-events-auto border-2 border-zinc-200"
+        className="w-12 h-12 rounded-full bg-foreground cursor-pointer shadow-lg shadow-foreground/40 hover:shadow-xl hover:shadow-foreground/60 flex items-center justify-center pointer-events-auto border-2 border-background"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
         <svg
-          className="w-6 h-6 text-black"
+          className="w-6 h-6 text-background"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

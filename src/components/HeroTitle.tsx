@@ -43,7 +43,7 @@ export default function HeroTitle() {
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 4, filter: "blur(10px)" }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="absolute text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tight text-center bg-gradient-to-b from-white via-white to-zinc-500 bg-clip-text text-transparent drop-shadow-2xl"
+            className="absolute text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tight text-center bg-gradient-to-b from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent drop-shadow-2xl"
           >
             {content[index].title}
           </motion.h1>
@@ -58,7 +58,7 @@ export default function HeroTitle() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="absolute top-0 left-0 right-0 text-sm md:text-xl text-zinc-400 text-center leading-snug"
+            className="absolute top-0 left-0 right-0 text-sm md:text-xl text-muted-foreground text-center leading-snug"
           >
             {content[index].desc}
           </motion.p>
