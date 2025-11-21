@@ -17,6 +17,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { PartnerLogo } from "@/components/PartnerLogo";
 import MagneticButton from "@/components/MagneticButton";
 import Preloader from "@/components/Preloader";
+import FloatingContactButton from "@/components/FloatingContactButton";
 
 import { motion } from "framer-motion";
 import { useEffect } from "react";
@@ -103,6 +104,7 @@ export default function Home() {
       {!hasLoaded && <Preloader onComplete={handlePreloaderComplete} />}
       <StarBackground showCelestialBody={true} />
       <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <FloatingContactButton />
       
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-black/50 backdrop-blur-md">
@@ -178,7 +180,7 @@ export default function Home() {
         <FadeIn className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-zinc-500 bg-clip-text text-transparent">What We Create</h2>
-            <p className="text-zinc-400 text-base max-w-2xl mx-auto">We don't just write code; we engineer digital ecosystems designed for scale, performance, and impact.</p>
+            <p className="text-zinc-400 text-base max-w-2xl mx-auto">We don&apos;t just write code; we engineer digital ecosystems designed for scale, performance, and impact.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

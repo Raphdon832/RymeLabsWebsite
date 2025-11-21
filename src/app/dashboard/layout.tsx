@@ -8,8 +8,8 @@ import { useAuth } from "@/context/AuthContext";
 const navigation = [
   { label: "Overview", href: "/dashboard", badge: "Insights" },
   { label: "Projects", href: "/dashboard/projects", badge: "Pipeline" },
-  { label: "Messages", href: "#", badge: "Soon", disabled: true },
-  { label: "Analytics", href: "#", badge: "Soon", disabled: true },
+  { label: "Messages", href: "/dashboard/messages", badge: "Inbox" },
+  { label: "Analytics", href: "/dashboard/analytics", badge: "Signals" },
 ];
 
 export default function DashboardLayout({
@@ -48,18 +48,6 @@ export default function DashboardLayout({
           {navigation.map((item) => {
             const isActive = pathname === item.href;
             const baseClasses = "flex items-center justify-between px-4 py-3 rounded-2xl border text-sm transition";
-
-            if (item.disabled) {
-              return (
-                <div
-                  key={item.label}
-                  className={`${baseClasses} border-white/5 bg-transparent text-white/30 cursor-not-allowed`}
-                >
-                  <span>{item.label}</span>
-                  <span className="text-[10px] uppercase tracking-[0.4em]">{item.badge}</span>
-                </div>
-              );
-            }
 
             return (
               <Link
@@ -112,6 +100,15 @@ export default function DashboardLayout({
             >
               View pipeline
             </Link>
+            <button
+              onClick={async () => {
+                await signOutUser();
+                router.replace("/auth/login");
+              }}
+              className="lg:hidden px-5 py-2 rounded-full border border-white/20 text-sm font-semibold text-white/80"
+            >
+              Sign out
+            </button>
           </div>
         </header>
         <main className="flex-1 px-6 lg:px-10 py-8 space-y-10 bg-gradient-to-b from-transparent to-white/[0.02]">

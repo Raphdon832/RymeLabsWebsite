@@ -2,6 +2,15 @@
 
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
+import { useProjectIntakes } from "@/hooks/useProjectIntakes";
+
+type PipelineItem = {
+  client: string;
+  scope: string;
+  stage: string;
+  eta: string;
+  isIntake?: boolean;
+};
 
 const highlightCards = [
   {
@@ -21,7 +30,7 @@ const highlightCards = [
   },
 ];
 
-const pipeline = [
+const pipeline: PipelineItem[] = [
   {
     client: "Scenscia",
     scope: "Immersive commerce platform",
@@ -50,6 +59,19 @@ const timeline = [
 
 export default function DashboardPage() {
   const { user } = useAuth();
+  const { intakes, loading } = useProjectIntakes();
+
+  const intakePipeline: PipelineItem[] = intakes.map((intake) => ({
+    client: intake.name || "New inquiry",
+    scope: `${intake.serviceType} · ${intake.budget}`,
+    stage: intake.status || "New intake",
+    eta: new Intl.DateTimeFormat("en", { month: "short", day: "2-digit" }).format(
+      new Date(intake.createdAt)
+    ),
+    isIntake: true,
+  }));
+
+  const mergedPipeline = [...intakePipeline, ...pipeline];
 
   return (
     <div className="space-y-10">
@@ -90,20 +112,37 @@ export default function DashboardPage() {
             </Link>
           </div>
           <div className="divide-y divide-white/5">
-            {pipeline.map((item) => (
-              <div key={item.client} className="py-4 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            {mergedPipeline.map((item) => (
+              <div
+                key={`${item.client}-${item.scope}-${item.eta}`}
+                className="py-4 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4"
+              >
                 <div>
-                  <p className="text-lg font-semibold">{item.client}</p>
+                  <p className="text-lg font-semibold flex items-center gap-2">
+                    {item.client}
+                    {item.isIntake && (
+                      <span className="text-[10px] uppercase tracking-[0.4em] text-emerald-300">New</span>
+                    )}
+                  </p>
                   <p className="text-sm text-white/60">{item.scope}</p>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="px-3 py-1 rounded-full border border-white/10 text-xs uppercase tracking-wide text-white/70">
+                  <span
+                    className={`px-3 py-1 rounded-full border text-xs uppercase tracking-wide ${
+                      item.isIntake
+                        ? "border-emerald-300/40 text-emerald-200"
+                        : "border-white/10 text-white/70"
+                    }`}
+                  >
                     {item.stage}
                   </span>
                   <span className="text-sm text-white/60">ETA {item.eta}</span>
                 </div>
               </div>
             ))}
+            {mergedPipeline.length === 0 && !loading && (
+              <p className="py-6 text-sm text-white/60">No live projects yet. Intake submissions will show up here.</p>
+            )}
           </div>
         </div>
         <div className="rounded-3xl border border-white/10 bg-white/5 p-6">

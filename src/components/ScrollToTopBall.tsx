@@ -29,7 +29,7 @@ export default function ScrollToTopBall() {
   };
 
   return (
-    <div className="flex justify-center w-full py-8 absolute -top-6 left-0 right-0 z-20 pointer-events-none">
+    <div className="flex justify-center w-full py-8 absolute -top-6 left-0 right-0 z-2000 pointer-events-none">
       <motion.div
         onClick={handleClick}
         animate={isAnimating ? controls : { y: [0, -15, 0] }}

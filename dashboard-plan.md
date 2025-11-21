@@ -110,15 +110,21 @@ The plan assumes a Next.js 13+ App Router setup with TypeScript, Tailwind CSS, a
 
 ### Phase 3: Advanced Features (3-4 weeks)
 1. Add messaging system:
-   - Create `MessageThread` component.
-   - Implement `/api/messages` for real-time chat (use Socket.io).
-2. File uploads: Integrate with Cloudinary.
+  - Create `MessageThread` component tied to Firestore-backed `/api/messages`.
+  - Stream submissions per project intake; Socket.io upgrade can come later.
+2. File uploads: Integrate with Cloudinary via a signed upload API helper.
 3. Analytics dashboard:
-   - Use Chart.js for visualizations.
-   - Create `/api/analytics` endpoint.
-4. Client-specific views: Restrict access based on roles.
-5. Email notifications: Integrate SendGrid.
+  - Use Chart.js + `react-chartjs-2` for visualizations.
+  - Create `/api/analytics` endpoint that aggregates Firestore metrics.
+4. Client-specific views: Restrict access based on roles (extend `AuthContext`).
+5. Email notifications: Integrate SendGrid webhook + transactional templates.
 6. Update work page: Pull projects from dashboard data.
+
+**Phase 3 (current sprint focus)**
+
+- Messaging MVP: RESTful `/api/messages` + dashboard UI for async conversations scoped to `projectIntakes` rows.
+- File hand-off: lightweight Cloudinary upload endpoint to attach artifacts to a message.
+- Analytics: Surface intake funnel metrics + volume trendlines on `/dashboard/analytics` using Chart.js, backed by `/api/analytics`.
 
 ### Phase 4: Testing and Polish (1-2 weeks)
 1. End-to-end testing with Cypress.

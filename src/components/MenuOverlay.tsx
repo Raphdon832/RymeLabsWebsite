@@ -2,6 +2,8 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 interface MenuOverlayProps {
   isOpen: boolean;
@@ -16,6 +18,15 @@ const navLinks = [
 ];
 
 export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
+  const { user, signOutUser } = useAuth();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await signOutUser();
+    onClose();
+    router.push("/");
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -62,6 +73,33 @@ export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                 </motion.a>
               </Link>
             ))}
+
+            {user && (
+              <>
+                <Link href="/dashboard" legacyBehavior passHref>
+                  <motion.a
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ delay: navLinks.length * 0.1 + 0.1, duration: 0.5 }}
+                    className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-emerald-300 to-emerald-700 hover:to-emerald-200 transition-all duration-300 tracking-tight cursor-pointer"
+                    onClick={onClose}
+                  >
+                    Dashboard
+                  </motion.a>
+                </Link>
+                <motion.button
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ delay: navLinks.length * 0.1 + 0.2, duration: 0.5 }}
+                  className="text-xl md:text-2xl font-medium text-zinc-500 hover:text-white transition-all duration-300 tracking-tight cursor-pointer mt-4"
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </motion.button>
+              </>
+            )}
           </nav>
 
           {/* Footer Info */}
