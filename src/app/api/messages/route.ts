@@ -53,7 +53,7 @@ export async function POST(request: Request) {
 
     const now = new Date().toISOString();
     const messageInput = {
-      projectId: payload.projectId ?? null,
+      projectId: payload.projectId,
       sender: payload.sender!.trim(),
       senderType: payload.senderType!,
       body: payload.body!.trim(),
