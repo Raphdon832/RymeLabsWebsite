@@ -6,10 +6,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import MagneticButton from "@/components/MagneticButton";
 import MenuOverlay from "@/components/MenuOverlay";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [animationType, setAnimationType] = useState<'zoom' | 'type'>('zoom');
+  const { user } = useAuth();
 
   useEffect(() => {
     setAnimationType(Math.random() > 0.5 ? 'zoom' : 'type');
@@ -40,16 +42,24 @@ export default function Header() {
           </span>
         </Link>
         
-        <MagneticButton 
-          onClick={() => setIsMenuOpen(true)}
-          className="group bg-white/5 border border-white/10 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-all hover:scale-105 active:scale-95 flex items-center gap-3 backdrop-blur-sm cursor-pointer"
-        >
-          <span className="tracking-wide">MENU</span>
-          <div className="flex flex-col gap-[5px] items-end">
-            <span className="w-6 h-[2px] bg-white rounded-full group-hover:w-4 transition-all duration-300"></span>
-            <span className="w-4 h-[2px] bg-white rounded-full group-hover:w-6 transition-all duration-300"></span>
-          </div>
-        </MagneticButton>
+        <div className="flex items-center gap-4">
+          <Link
+            href={user ? "/dashboard" : "/auth/login"}
+            className="hidden sm:inline-flex items-center px-5 py-2 rounded-full border border-white/10 text-sm font-medium text-white/80 hover:text-white hover:border-white/40 transition"
+          >
+            {user ? "Dashboard" : "Login"}
+          </Link>
+          <MagneticButton 
+            onClick={() => setIsMenuOpen(true)}
+            className="group bg-white/5 border border-white/10 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-all hover:scale-105 active:scale-95 flex items-center gap-3 backdrop-blur-sm cursor-pointer"
+          >
+            <span className="tracking-wide">MENU</span>
+            <div className="flex flex-col gap-[5px] items-end">
+              <span className="w-6 h-[2px] bg-white rounded-full group-hover:w-4 transition-all duration-300"></span>
+              <span className="w-4 h-[2px] bg-white rounded-full group-hover:w-6 transition-all duration-300"></span>
+            </div>
+          </MagneticButton>
+        </div>
       </header>
     </>
   );
