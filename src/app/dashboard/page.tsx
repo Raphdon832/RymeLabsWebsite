@@ -1,78 +1,124 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
-import MagneticButton from "@/components/MagneticButton";
+
+const highlightCards = [
+  {
+    label: "Active initiatives",
+    value: "06",
+    detail: "Across health, fintech, and lifestyle",
+  },
+  {
+    label: "Avg. sprint velocity",
+    value: "92%",
+    detail: "Commitment delivered last cycle",
+  },
+  {
+    label: "Upcoming launches",
+    value: "03",
+    detail: "Scheduled over the next 30 days",
+  },
+];
+
+const pipeline = [
+  {
+    client: "Scenscia",
+    scope: "Immersive commerce platform",
+    stage: "In development",
+    eta: "Dec 14",
+  },
+  {
+    client: "Pharmasea",
+    scope: "AI vendor console",
+    stage: "QA + compliance",
+    eta: "Jan 08",
+  },
+  {
+    client: "Ryme Interiors",
+    scope: "Spatial configurator",
+    stage: "Design + engineering",
+    eta: "Jan 22",
+  },
+];
+
+const timeline = [
+  { title: "Weekly alignment", description: "Core team ritual · 9:00 AM WAT" },
+  { title: "Client demos", description: "WhitePaper + Pharmasea showcase" },
+  { title: "Release window", description: "Push Fivescores v2.4 by Friday" },
+];
 
 export default function DashboardPage() {
-  const { user, loading, signOutUser } = useAuth();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!loading && !user) {
-      router.replace("/auth/login?redirect=/dashboard");
-    }
-  }, [loading, user, router]);
-
-  if (loading || !user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-black text-white">
-        <p className="text-sm tracking-[0.4em] text-white/60 uppercase">
-          Preparing your dashboard
-        </p>
-      </div>
-    );
-  }
+  const { user } = useAuth();
 
   return (
-    <div className="min-h-screen bg-black text-white px-6 py-32">
-      <div className="max-w-5xl mx-auto">
-        <div className="mb-10">
-          <p className="text-xs uppercase tracking-[0.5em] text-blue-300/80 mb-4">
-            Dashboard Overview
+    <div className="space-y-10">
+      <section className="space-y-6">
+        <div>
+          <p className="text-xs uppercase tracking-[0.5em] text-white/40 mb-2">
+            Dashboard overview
           </p>
-          <h1 className="text-4xl font-bold mb-3">Welcome back, {user.email}</h1>
-          <p className="text-zinc-400 max-w-2xl">
-            This space will host your project briefs, milestones, assets, and conversations. We&apos;re currently wiring up the rest of the dashboard according to the execution plan.
-          </p>
+          <h1 className="text-3xl lg:text-4xl font-semibold">
+            Welcome back{user?.email ? `, ${user.email}` : ""}. Here&apos;s the pulse for today.
+          </h1>
         </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {highlightCards.map((card) => (
+            <div
+              key={card.label}
+              className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur"
+            >
+              <p className="text-xs uppercase tracking-[0.4em] text-white/40 mb-3">
+                {card.label}
+              </p>
+              <p className="text-4xl font-bold mb-2">{card.value}</p>
+              <p className="text-sm text-white/60">{card.detail}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-            <p className="text-sm uppercase tracking-[0.4em] text-white/40 mb-2">
-              Next step
-            </p>
-            <h2 className="text-2xl font-semibold mb-3">Start a project brief</h2>
-            <p className="text-zinc-400 text-sm mb-6">
-              Head over to the start-project page to submit a new initiative. It will soon appear here for tracking.
-            </p>
-            <Link href="/start-project" className="text-white underline">
-              Go to start-project ↗
+      <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-6">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <p className="text-xs uppercase tracking-[0.4em] text-white/40 mb-2">Pipeline</p>
+              <h2 className="text-2xl font-semibold">Live streams</h2>
+            </div>
+            <Link href="/dashboard/projects" className="text-sm text-white/70 underline">
+              See all
             </Link>
           </div>
-
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-            <p className="text-sm uppercase tracking-[0.4em] text-white/40 mb-2">
-              Account
-            </p>
-            <h2 className="text-2xl font-semibold mb-3">Signed in as {user.email}</h2>
-            <p className="text-zinc-400 text-sm mb-6">
-              Need to switch accounts? Sign out and re-authenticate with a different email or Google account.
-            </p>
-            <MagneticButton
-              onClick={async () => {
-                await signOutUser();
-                router.replace("/auth/login");
-              }}
-              className="border border-white/20 text-white bg-transparent px-6 py-2 rounded-full"
-            >
-              Sign out
-            </MagneticButton>
+          <div className="divide-y divide-white/5">
+            {pipeline.map((item) => (
+              <div key={item.client} className="py-4 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                <div>
+                  <p className="text-lg font-semibold">{item.client}</p>
+                  <p className="text-sm text-white/60">{item.scope}</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <span className="px-3 py-1 rounded-full border border-white/10 text-xs uppercase tracking-wide text-white/70">
+                    {item.stage}
+                  </span>
+                  <span className="text-sm text-white/60">ETA {item.eta}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
+          <p className="text-xs uppercase tracking-[0.4em] text-white/40 mb-2">Today</p>
+          <h2 className="text-2xl font-semibold mb-4">Touchpoints</h2>
+          <div className="space-y-4">
+            {timeline.map((event) => (
+              <div key={event.title} className="p-4 rounded-2xl bg-black/30 border border-white/5">
+                <p className="text-sm font-semibold">{event.title}</p>
+                <p className="text-xs text-white/60">{event.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
