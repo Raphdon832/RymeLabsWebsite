@@ -22,6 +22,37 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useLoading } from "@/context/LoadingContext";
 
+const clientSuccessStories = [
+  {
+    name: "Scenscia",
+    type: "Luxury diffuser brand",
+    logo: "/Scenscia.png",
+    logoWidth: 160,
+    logoHeight: 48,
+  },
+  {
+    name: "Pharmasea",
+    type: "Pharmaceutical marketplace",
+    logo: "/PharmaseaIcon.png",
+    logoWidth: 160,
+    logoHeight: 48,
+  },
+  {
+    name: "Ryme Interiors",
+    type: "Interior design studio",
+    logo: "/RymeInteriors.png",
+    logoWidth: 160,
+    logoHeight: 48,
+  },
+  {
+    name: "Fivescores.com",
+    type: "Live scores platform connecting sports lovers",
+    logo: "/fivescores.png",
+    logoWidth: 180,
+    logoHeight: 48,
+  },
+];
+
 const HeaderText = ({ type }: { type: 'zoom' | 'type' }) => {
   if (type === 'zoom') {
     return (
@@ -70,7 +101,7 @@ export default function Home() {
   return (
     <div className="min-h-screen text-white font-sans selection:bg-white selection:text-black relative">
       {!hasLoaded && <Preloader onComplete={handlePreloaderComplete} />}
-      <StarBackground />
+      <StarBackground showCelestialBody={true} />
       <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       
       {/* Header */}
@@ -263,19 +294,25 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-bold mb-20 text-center">Client Success Stories</h2>
           
           <Marquee className="py-4" baseVelocity={-0.2}>
-            {[
-              { name: "Scenscia.com", type: "Web Platform" },
-              { name: "Lenox Phoenix", type: "Business Solution" },
-              { name: "Trackd", type: "Mobile Application" },
-              { name: "Fivescores.com", type: "Sports Analytics" },
-              { name: "Scenscia.com", type: "Web Platform" },
-              { name: "Lenox Phoenix", type: "Business Solution" },
-              { name: "Trackd", type: "Mobile Application" },
-              { name: "Fivescores.com", type: "Sports Analytics" }
-            ].map((client, i) => (
-              <div key={i} className="group p-8 rounded-2xl bg-zinc-900/20 border border-white/5 hover:border-white/20 hover:bg-zinc-900/40 transition-all duration-300 w-[280px] flex-shrink-0">
-                <div className="h-12 w-12 mb-6 rounded-full bg-white/5 flex items-center justify-center text-zinc-500 group-hover:text-white group-hover:bg-white/10 transition-colors">
-                  <span className="font-bold text-lg">{client.name[0]}</span>
+            {[...clientSuccessStories, ...clientSuccessStories].map((client, i) => (
+              <div
+                key={`${client.name}-${i}`}
+                className="group p-8 rounded-2xl bg-zinc-900/20 border border-white/5 hover:border-white/20 hover:bg-zinc-900/40 transition-all duration-300 w-[280px] flex-shrink-0 text-left"
+              >
+                <div className="mb-6 mt-2 flex items-center justify-start h-16">
+                  {client.logo ? (
+                    <Image
+                      src={client.logo}
+                      alt={`${client.name} logo`}
+                      width={client.logoWidth ?? 160}
+                      height={client.logoHeight ?? 48}
+                      className="object-contain max-h-12 w-auto drop-shadow-lg"
+                    />
+                  ) : (
+                    <div className="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center text-zinc-500 group-hover:text-white group-hover:bg-white/10 transition-colors self-start">
+                      <span className="font-bold text-lg">{client.name[0]}</span>
+                    </div>
+                  )}
                 </div>
                 <h3 className="text-lg font-bold mb-2 text-zinc-200 group-hover:text-white">{client.name}</h3>
                 <p className="text-sm text-zinc-500 group-hover:text-zinc-400">{client.type}</p>

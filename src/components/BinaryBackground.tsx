@@ -26,8 +26,11 @@ const BinaryBackground = () => {
     }
 
     const draw = () => {
+      // Fade out existing content to transparent
+      ctx.globalCompositeOperation = 'destination-out';
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, width, height);
+      ctx.globalCompositeOperation = 'source-over';
 
       ctx.fillStyle = "#333"; // Dark grey text
       ctx.font = "15px monospace";
