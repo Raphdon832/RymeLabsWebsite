@@ -11,11 +11,17 @@ import { useAuth } from "@/context/AuthContext";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [animationType, setAnimationType] = useState<'zoom' | 'type'>('zoom');
+  const [mounted, setMounted] = useState(false);
   const { user } = useAuth();
 
   useEffect(() => {
     setAnimationType(Math.random() > 0.5 ? 'zoom' : 'type');
+    setMounted(true);
   }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <>
