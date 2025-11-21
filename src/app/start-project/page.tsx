@@ -1,12 +1,11 @@
 "use client";
 
-import StarBackground from "@/components/StarBackground";
 import FadeIn from "@/components/FadeIn";
 import MagneticButton from "@/components/MagneticButton";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import Header from "@/components/Header";
+import PageShell from "@/components/PageShell";
 
 export default function StartProjectPage() {
     const serviceOptions = useMemo(
@@ -129,13 +128,10 @@ export default function StartProjectPage() {
         }
     };
 
-  return (
-    <div className="min-h-screen text-white font-sans selection:bg-white selection:text-black relative pt-32 pb-20 px-6">
-      <StarBackground />
-      <Header />
-      
-            <div className="max-w-3xl mx-auto">
-                <FadeIn inView={false}>
+        return (
+                <PageShell containerClassName="max-w-3xl">
+                        <div className="max-w-3xl mx-auto">
+                                <FadeIn inView={false}>
           <div className="mb-12">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-zinc-500">
               Start a Project
@@ -146,7 +142,7 @@ export default function StartProjectPage() {
              <div className={`h-1 flex-1 rounded-full transition-colors ${step >= 3 ? 'bg-white' : 'bg-white/10'}`} />
           </div>
         </div>
-                </FadeIn>
+                                </FadeIn>
 
                                 <FadeIn delay={0.2} inView={false}>
                     <div className="bg-white/5 p-8 md:p-12 rounded-3xl border border-white/10 backdrop-blur-sm min-h-[400px] flex flex-col justify-between">
@@ -349,9 +345,9 @@ export default function StartProjectPage() {
                             </>
                         )}
                     </div>
-                </FadeIn>
-      </div>
+                                </FadeIn>
+                        </div>
 
-    </div>
+                </PageShell>
   );
 }
